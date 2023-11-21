@@ -3,9 +3,29 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Ironhacking</title>
     <link rel="stylesheet" href="styles/style.css" />
-    <script src="script.js" defer></script>
+    <script type="text/javascript" src="./js/monster.js"></script>
+    <script type="text/javascript" src="./js/player.js" defer></script>
+    <script type="text/javascript" src="./js/game.js" defer></script>
+    <script type="text/javascript" src="./js/script.js" defer></script>
   </head>
-  <body></body>
+  <body>
+    <div id="game-intro">
+      <img src="./images/background.png" alt="background" />
+      <button id="start-button"></button>
+    </div>
+
+    <div id="game-container">
+      <!-- <p>Score: <span id="score">0</span></p> -->
+      <div id="game-screen">
+        <div id="monster"></div>
+      </div>
+    </div>
+
+    <div id="game-end">
+      <!-- <button id="restart-button">Restart</button> -->
+    </div>
+  </body>
 </html>

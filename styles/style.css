@@ -1,0 +1,68 @@
+* {
+  margin: 0;
+  padding: 0;
+  max-width: 100vw;
+}
+
+html {
+  background-color: black;
+  height: 862px;
+}
+
+body {
+  width: 524px;
+  height: 100vh;
+  margin: 0 auto;
+}
+
+/* MENU */
+#game-intro {
+  display: inherit;
+  position: relative;
+}
+
+#game-intro > img {
+  position: absolute;
+}
+
+#game-intro > button {
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%, 600%);
+  cursor: pointer;
+  background-image: url(../images/play.png);
+  background-color: #ffa12b;
+  background-repeat: no-repeat;
+  background-position: center;
+  border: none;
+  width: 119px;
+  height: 42px;
+  text-decoration: none;
+  background-color: #ffa12b;
+  border-radius: 5px;
+  box-shadow: inset 0 1px 0 #ffe5c4, 3px 10px 0 #915100;
+}
+
+#game-intro button:active {
+  background-color: #f78900;
+}
+
+#game-screen {
+  display: none;
+  position: relative;
+  background-image: url(../images/backdrop.png);
+}
+
+#game-end {
+  display: none;
+}
+
+#monster {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  height: 775px;
+  width: 100px;
+  left: 40%;
+}
