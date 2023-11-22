@@ -13,6 +13,10 @@ class Player {
   }
 
   moveLeft() {
+    const audio = new Audio();
+    audio.src = "audio/cut.wav";
+    audio.playbackRate = 2;
+    audio.play();
     this.element.style.left = "30%";
     this.element.src = "./images/character/left/attack_0_left.png";
     this.element.classList.add("samurai_attack_left");
@@ -22,6 +26,10 @@ class Player {
   }
 
   moveRight() {
+    const audio = new Audio();
+    audio.src = "audio/cut.wav";
+    audio.playbackRate = 2;
+    audio.play();
     this.element.style.left = "70%";
     this.element.src = "./images/character/right/attack_0_right.png";
     this.element.classList.add("samurai_attack_right");
