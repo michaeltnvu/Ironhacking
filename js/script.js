@@ -16,9 +16,9 @@ window.onload = function () {
     game.start(); // Game class
     document.addEventListener("keydown", (e) => {
       if (e.key === "ArrowLeft") {
-        // move player left
+        game.player.moveLeft();
       } else if (e.key === "ArrowRight") {
-        // move player right
+        game.player.moveRight();
       }
     });
   }
