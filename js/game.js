@@ -14,7 +14,6 @@ class Game {
       "./images/character/left/attack_0_left.png"
     );
     this.bambooClass = new Bamboo();
-    this.gameOver = false;
     this.score = 0;
     // Placeholder for timer
     // Placeholder for leaderboard
@@ -31,30 +30,32 @@ class Game {
   gameLoop() {
     document.addEventListener("keydown", (e) => {
       if (e.key === "ArrowLeft") {
-        this.player.moveLeft();
-        if (this.bambooClass.bambooList.value === "left") {
-          this.gameOver = true;
-          this.gameOver();
+        this.bambooClass.removeBamboo();
+        this.player.move("left");
+        if (this.bambooClass.bambooArr[0].value === "left") {
+          this.player.flattened("left");
+          this.gameIsOver();
         } else {
           this.score++;
-          this.bambooClass.removeBamboo();
-          this.bambooClass.addBamboo();
         }
+        this.bambooClass.addBamboo();
       } else if (e.key === "ArrowRight") {
-        this.player.moveRight();
-        if (this.bambooClass.bambooList.value === "right") {
-          this.gameOver = true;
-          this.gameOver();
+        this.bambooClass.removeBamboo();
+        this.player.move("right");
+        if (this.bambooClass.bambooArr[0].value === "right") {
+          this.player.flattened("right");
+          this.gameIsOver();
         } else {
           this.score++;
-          this.bambooClass.removeBamboo();
-          this.bambooClass.addBamboo();
         }
+        this.bambooClass.addBamboo();
       }
     });
   }
 
-  gameOver() {
-    alert("Try again");
+  gameIsOver() {
+    setTimeout(() => {
+      alert("Game over");
+    }, 100);
   }
 }

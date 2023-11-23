@@ -35,6 +35,7 @@ class Bamboo {
 
   removeBamboo() {
     this.bambooArr.shift();
+    // consider adding classlist for animation as we remove child
     this.bambooContainer.removeChild(this.bambooContainer.firstChild);
   }
 }
