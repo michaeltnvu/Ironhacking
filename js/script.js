@@ -5,21 +5,10 @@ window.onload = function () {
 
   startBtn.addEventListener("click", () => {
     game = new Game();
-    startGame();
+    game.start();
   });
 
-  restartBtn.addEventListener("click", () => {
-    location.reload();
-  });
-
-  function startGame() {
-    game.start(); // Game class
-    document.addEventListener("keydown", (e) => {
-      if (e.key === "ArrowLeft") {
-        game.player.moveLeft();
-      } else if (e.key === "ArrowRight") {
-        game.player.moveRight();
-      }
-    });
-  }
+  // restartBtn.addEventListener("click", () => {
+  //   location.reload();
+  // });
 };

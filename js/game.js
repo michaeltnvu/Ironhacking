@@ -13,11 +13,11 @@ class Game {
       188,
       "./images/character/left/attack_0_left.png"
     );
+    this.bambooClass = new Bamboo();
     this.gameOver = false;
-    this.frames = 0;
-    // Placeholder for score
+    this.score = 0;
     // Placeholder for timer
-    // Placeholder for score
+    // Placeholder for leaderboard
   }
 
   start() {
@@ -25,9 +25,36 @@ class Game {
     this.gameScreen.style.width = `${this.width}px`;
     this.startScreen.style.display = "none";
     this.gameScreen.style.display = "inherit";
+    this.gameLoop();
   }
 
-  gameLoop() {}
-  update() {}
-  gameOver() {}
+  gameLoop() {
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "ArrowLeft") {
+        this.player.moveLeft();
+        if (this.bambooClass.bambooList.value === "left") {
+          this.gameOver = true;
+          this.gameOver();
+        } else {
+          this.score++;
+          this.bambooClass.removeBamboo();
+          this.bambooClass.addBamboo();
+        }
+      } else if (e.key === "ArrowRight") {
+        this.player.moveRight();
+        if (this.bambooClass.bambooList.value === "right") {
+          this.gameOver = true;
+          this.gameOver();
+        } else {
+          this.score++;
+          this.bambooClass.removeBamboo();
+          this.bambooClass.addBamboo();
+        }
+      }
+    });
+  }
+
+  gameOver() {
+    alert("Try again");
+  }
 }

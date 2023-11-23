@@ -61,55 +61,54 @@ body {
 
 .samurai {
   position: absolute;
-  /* IDLE LEFT */
   top: 67.5%;
   left: 25.3%;
-  /* ATTACK LEFT */
-  /* top: 68.5%; */
-  /* left: 30%; */
-  /* ATTACK RIGHT */
-  /* top: 68.5%; */
-  /* left: 70%; */
   transform: translate(-50%, -50%);
   width: 260px;
   height: 188px;
 }
-/* END MENU */
 
+/* GAME SCREEN */
 #game-screen {
   display: none;
 }
 
 .samurai_attack_left {
   animation-name: attack_left;
-  animation-duration: 0.05s;
+  animation-duration: 0.08s;
 }
 
 .samurai_attack_right {
   animation-name: attack_right;
-  animation-duration: 0.05s;
+  animation-duration: 0.08s;
+}
+
+#bamboo-container {
+  display: flex;
+  flex-direction: column-reverse;
+  align-items: center;
+  position: absolute;
+  top: 37.5%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  height: 700px;
+  width: 450px;
 }
 
 @keyframes attack_left {
   0% {
-    content: url("../images/character/left/attack_1_left.png");
-  }
-  14.28% {
-    content: url("../images/character/left/attack_2_left.png");
-  }
-  28.57% {
     content: url("../images/character/left/attack_3_left.png");
   }
-  42.86% {
+  20% {
     content: url("../images/character/left/attack_4_left.png");
   }
-  57.14% {
+  40% {
     content: url("../images/character/left/attack_5_left.png");
   }
-  71.43% {
+  60% {
     content: url("../images/character/left/attack_6_left.png");
   }
-  85.71% {
+  80% {
     content: url("../images/character/left/attack_7_left.png");
   }
   100% {
@@ -119,24 +118,18 @@ body {
 
 @keyframes attack_right {
   0% {
-    content: url("../images/character/right/attack_1_right.png");
-  }
-  14.28% {
-    content: url("../images/character/right/attack_2_right.png");
-  }
-  28.57% {
     content: url("../images/character/right/attack_3_right.png");
   }
-  42.86% {
+  20% {
     content: url("../images/character/right/attack_4_right.png");
   }
-  57.14% {
+  40% {
     content: url("../images/character/right/attack_5_right.png");
   }
-  71.43% {
+  60% {
     content: url("../images/character/right/attack_6_right.png");
   }
-  85.71% {
+  80% {
     content: url("../images/character/right/attack_7_right.png");
   }
   100% {

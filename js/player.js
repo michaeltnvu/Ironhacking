@@ -37,7 +37,4 @@ class Player {
       this.element.classList.remove("samurai_attack_right");
     }, 100);
   }
-
-  updatePosition() {}
-  didCollide(bamboo) {}
 }
