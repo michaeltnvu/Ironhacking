@@ -95,6 +95,13 @@ body {
   width: 450px;
 }
 
+#score {
+  position: absolute;
+  top: 85%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
 @keyframes attack_left {
   0% {
     content: url("../images/character/left/attack_3_left.png");

@@ -3,6 +3,15 @@ class Game {
     this.startScreen = document.getElementById("game-intro");
     this.gameScreen = document.getElementById("game-screen");
     this.gameEndScreen = document.getElementById("game-end");
+    this.scoreContainer = document.getElementById("score-container");
+    this.scoreContainer.style.display = "flex";
+    this.scoreContainer.style.justifyContent = "center";
+    this.scoreContainer.style.position = "absolute";
+    this.scoreContainer.style.width = "100%";
+    this.scoreContainer.style.height = "50px";
+    this.scoreContainer.style.top = "88%";
+    this.scoreContainer.style.left = "50%";
+    this.scoreContainer.style.transform = "translate(-50%, -50%)";
     this.height = 862;
     this.width = 524;
     this.player = new Player(
@@ -28,6 +37,10 @@ class Game {
   }
 
   gameLoop() {
+    setInterval(() => {
+      this.displayScore(this.score);
+    }, this.score);
+    this.displayScore(this.score);
     document.addEventListener("keydown", (e) => {
       if (e.key === "ArrowLeft") {
         this.bambooClass.removeBamboo();
@@ -53,9 +66,20 @@ class Game {
     });
   }
 
+  displayScore(num) {
+    const scoreString = num.toString();
+    this.scoreContainer.innerHTML = "";
+    for (let i = 0; i < scoreString.length; i++) {
+      const numImage = document.createElement("img");
+      numImage.src = `./images/numbers/${scoreString[i]}.png`;
+      numImage.alt = scoreString[i];
+      this.scoreContainer.appendChild(numImage);
+    }
+  }
+
   gameIsOver() {
     setTimeout(() => {
-      alert("Game over");
+      alert("Game Over");
     }, 100);
   }
 }
