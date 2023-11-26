@@ -23,8 +23,8 @@ class Game {
       "./images/character/left/attack_0_left.png"
     );
     this.bambooClass = new Bamboo();
+    this.timer = new Timer();
     this.score = 0;
-    // Placeholder for timer
     // Placeholder for leaderboard
   }
 
@@ -34,22 +34,28 @@ class Game {
     this.startScreen.style.display = "none";
     this.gameScreen.style.display = "inherit";
     this.gameLoop();
+    this.timer.startTimer();
   }
 
   gameLoop() {
-    setInterval(() => {
-      this.displayScore(this.score);
-    }, this.score);
     this.displayScore(this.score);
+    const interval = setInterval(() => {
+      if (this.timer.timeRemaining <= 0) {
+        this.endGame();
+        clearInterval(interval);
+      }
+    }, 100);
     document.addEventListener("keydown", (e) => {
       if (e.key === "ArrowLeft") {
         this.bambooClass.removeBamboo();
         this.player.move("left");
         if (this.bambooClass.bambooArr[0].value === "left") {
           this.player.flattened("left");
-          this.gameIsOver();
+          this.endGame();
         } else {
           this.score++;
+          this.displayScore(this.score);
+          this.timer.addBonusTime();
         }
         this.bambooClass.addBamboo();
       } else if (e.key === "ArrowRight") {
@@ -57,9 +63,11 @@ class Game {
         this.player.move("right");
         if (this.bambooClass.bambooArr[0].value === "right") {
           this.player.flattened("right");
-          this.gameIsOver();
+          this.endGame();
         } else {
           this.score++;
+          this.displayScore(this.score);
+          this.timer.addBonusTime();
         }
         this.bambooClass.addBamboo();
       }
@@ -77,9 +85,17 @@ class Game {
     }
   }
 
-  gameIsOver() {
+  endGame() {
     setTimeout(() => {
-      alert("Game Over");
-    }, 100);
+      this.gameIsOver();
+    }, 250);
+  }
+
+  gameIsOver() {
+    this.timer.timerContainer.remove();
+    this.player.element.remove();
+    this.bambooClass.bambooContainer.remove();
+    this.gameScreen.style.display = "none";
+    this.gameEndScreen.style.display = "inherit";
   }
 }
