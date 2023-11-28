@@ -4,14 +4,6 @@ class Game {
     this.gameScreen = document.getElementById("game-screen");
     this.gameEndScreen = document.getElementById("game-end");
     this.scoreContainer = document.getElementById("score-container");
-    this.scoreContainer.style.display = "flex";
-    this.scoreContainer.style.justifyContent = "center";
-    this.scoreContainer.style.position = "absolute";
-    this.scoreContainer.style.width = "100%";
-    this.scoreContainer.style.height = "50px";
-    this.scoreContainer.style.top = "88%";
-    this.scoreContainer.style.left = "50%";
-    this.scoreContainer.style.transform = "translate(-50%, -50%)";
     this.height = 862;
     this.width = 524;
     this.player = new Player(
@@ -25,12 +17,19 @@ class Game {
     this.bambooClass = new Bamboo();
     this.timer = new Timer();
     this.score = 0;
-    // Placeholder for leaderboard
+    this.highscore = localStorage.getItem("highscore")
+      ? localStorage.getItem("highscore")
+      : 0;
+    this.gameOver = false;
+    this.gameInterval = null;
+    this.audio = document.getElementById("gameAudio");
+    this.source = document.getElementById("audioSource");
   }
 
   start() {
     this.gameScreen.style.height = `${this.height}px`;
     this.gameScreen.style.width = `${this.width}px`;
+    this.gameEndScreen.style.display = "none";
     this.startScreen.style.display = "none";
     this.gameScreen.style.display = "inherit";
     this.gameLoop();
@@ -39,39 +38,12 @@ class Game {
 
   gameLoop() {
     this.displayScore(this.score);
-    const interval = setInterval(() => {
+    this.gameInterval = setInterval(() => {
       if (this.timer.timeRemaining <= 0) {
-        this.endGame();
-        clearInterval(interval);
+        this.gameIsOver();
+        clearInterval(this.gameInterval);
       }
     }, 100);
-    document.addEventListener("keydown", (e) => {
-      if (e.key === "ArrowLeft") {
-        this.bambooClass.removeBamboo();
-        this.player.move("left");
-        if (this.bambooClass.bambooArr[0].value === "left") {
-          this.player.flattened("left");
-          this.endGame();
-        } else {
-          this.score++;
-          this.displayScore(this.score);
-          this.timer.addBonusTime();
-        }
-        this.bambooClass.addBamboo();
-      } else if (e.key === "ArrowRight") {
-        this.bambooClass.removeBamboo();
-        this.player.move("right");
-        if (this.bambooClass.bambooArr[0].value === "right") {
-          this.player.flattened("right");
-          this.endGame();
-        } else {
-          this.score++;
-          this.displayScore(this.score);
-          this.timer.addBonusTime();
-        }
-        this.bambooClass.addBamboo();
-      }
-    });
   }
 
   displayScore(num) {
@@ -85,17 +57,31 @@ class Game {
     }
   }
 
-  endGame() {
-    setTimeout(() => {
-      this.gameIsOver();
-    }, 250);
-  }
-
   gameIsOver() {
-    this.timer.timerContainer.remove();
-    this.player.element.remove();
-    this.bambooClass.bambooContainer.remove();
+    clearInterval(this.timer.interval);
+    this.audio.pause();
     this.gameScreen.style.display = "none";
+    this.gameScreen.innerHTML = `
+    <img src="./images/backdrop-start.png" alt="backdrop game" />
+    <div id="timer-container">
+      <div id="timer-bar"></div>
+    </div>
+    <div id="bamboo-container"></div>
+    <div id="score-container"></div>
+    `;
     this.gameEndScreen.style.display = "inherit";
+    const gameOverTitle = document.createElement("img");
+    gameOverTitle.setAttribute("id", "game-over");
+    gameOverTitle.src = "./images/game_over.png";
+    this.gameEndScreen.appendChild(gameOverTitle);
+    let score = document.getElementById("your-score");
+    score.innerHTML = this.score;
+    this.gameOver = true;
+    if (this.score > this.highscore) {
+      localStorage.setItem("highscore", this.score);
+      alert("New Highscore!");
+    }
+    const highscore = document.getElementById("highscore");
+    highscore.innerHTML = this.highscore;
   }
 }

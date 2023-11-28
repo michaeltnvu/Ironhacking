@@ -34,8 +34,16 @@ class Bamboo {
   }
 
   removeBamboo() {
-    this.bambooArr.shift();
-    // consider adding classlist for animation as we remove child
+    const animationContainer = document.getElementById("animation-container");
+    const removedBamboo = this.bambooArr.shift();
+    removedBamboo;
     this.bambooContainer.removeChild(this.bambooContainer.firstChild);
+    // const element = document.createElement("img");
+    // element.src = removedBamboo.img;
+    // element.classList.add("spinAway");
+    // animationContainer.append(element);
+    // setTimeout(() => {
+    //   animationContainer.removeChild(animationContainer.firstChild);
+    // }, 1000);
   }
 }
