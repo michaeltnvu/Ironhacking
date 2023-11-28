@@ -126,24 +126,67 @@ body {
 }
 
 #animation-container {
+  display: flex;
+  flex-direction: column-reverse;
   position: absolute;
-  top: 61%;
+  top: 0;
   left: 50%;
-  transform: translate(-50%, -50%);
-  height: 150px;
-  width: 450px;
+  transform: translate(-50%);
+  height: 100%;
+  width: 99%;
+  overflow-x: clip;
+  overflow-y: clip;
 }
 
-.spinAway {
-  animation: spinAwayAnimation 1s linear;
+.spinAwayRight {
+  position: absolute;
+  top: 60%;
+  left: 10%;
+  animation: spinAwayRight 1s linear;
 }
 
-@keyframes spinAwayAnimation {
-  from {
-    transform: rotate(0deg);
+.spinAwayLeft {
+  position: absolute;
+  top: 60%;
+  animation: spinAwayLeft 1s linear;
+}
+
+@keyframes spinAwayRight {
+  0% {
+    transform: translateX(0) translateY(0) rotate(0deg);
   }
-  to {
-    transform: rotate(720deg);
+  25% {
+    transform: translateX(25%) translateY(-50px) rotate(-180deg);
+    opacity: 1;
+  }
+  50% {
+    transform: translateX(50%) translateY(100px) rotate(-360deg);
+  }
+  75% {
+    transform: translateX(75%) translateY(200px) rotate(-540deg);
+  }
+  100% {
+    transform: translateX(100%) translateY(250px) rotate(-720deg);
+    opacity: 0;
+  }
+}
+
+@keyframes spinAwayLeft {
+  0% {
+    transform: translateX(0) translateY(0) rotate(0deg);
+  }
+  25% {
+    transform: translateX(-25%) translateY(-50px) rotate(180deg);
+    opacity: 1;
+  }
+  50% {
+    transform: translateX(-50%) translateY(100px) rotate(360deg);
+  }
+  75% {
+    transform: translateX(-75%) translateY(200px) rotate(540deg);
+  }
+  100% {
+    transform: translateX(-100%) translateY(250px) rotate(720deg);
     opacity: 0;
   }
 }

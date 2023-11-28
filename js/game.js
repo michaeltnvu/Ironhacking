@@ -67,6 +67,7 @@ class Game {
       <div id="timer-bar"></div>
     </div>
     <div id="bamboo-container"></div>
+    <div id="animation-container"></div>
     <div id="score-container"></div>
     `;
     this.gameEndScreen.style.display = "inherit";

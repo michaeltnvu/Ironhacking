@@ -16,6 +16,7 @@ class Player {
     const audio = new Audio();
     audio.src = "./audio/cut.wav";
     audio.playbackRate = 2;
+    audio.volume = 0.5;
     audio.play();
     if (direction === "left") {
       this.element.src = "./images/character/left/attack_0_left.png";
@@ -34,7 +35,7 @@ class Player {
     }
   }
 
-  flattened(direction) {
+  bonk(direction) {
     const audio = new Audio();
     audio.src = "./audio/bonk.mp3";
     audio.playbackRate = 3;

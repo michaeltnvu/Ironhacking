@@ -8,6 +8,7 @@ class Bamboo {
       { value: "right", img: "./images/bamboo/obstacle_right.png" },
     ];
     this.bambooArr = [this.bambooList[0]];
+    this.removedBamboo = null;
     this.init();
   }
 
@@ -33,17 +34,31 @@ class Bamboo {
     this.bambooContainer.appendChild(element);
   }
 
-  removeBamboo() {
+  removeBambooLeft() {
     const animationContainer = document.getElementById("animation-container");
+    const element = document.createElement("img");
     const removedBamboo = this.bambooArr.shift();
     removedBamboo;
+    element.src = removedBamboo.img;
+    element.classList.add("spinAwayLeft");
+    animationContainer.append(element);
+    setTimeout(() => {
+      animationContainer.removeChild(element);
+    }, 1000);
     this.bambooContainer.removeChild(this.bambooContainer.firstChild);
-    // const element = document.createElement("img");
-    // element.src = removedBamboo.img;
-    // element.classList.add("spinAway");
-    // animationContainer.append(element);
-    // setTimeout(() => {
-    //   animationContainer.removeChild(animationContainer.firstChild);
-    // }, 1000);
+  }
+
+  removeBambooRight() {
+    const animationContainer = document.getElementById("animation-container");
+    const element = document.createElement("img");
+    const removedBamboo = this.bambooArr.shift();
+    removedBamboo;
+    element.src = removedBamboo.img;
+    element.classList.add("spinAwayRight");
+    animationContainer.append(element);
+    setTimeout(() => {
+      animationContainer.removeChild(element);
+    }, 1000);
+    this.bambooContainer.removeChild(this.bambooContainer.firstChild);
   }
 }
