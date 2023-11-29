@@ -3,14 +3,14 @@ window.onload = function () {
   const restartBtn = document.getElementById("restart-button");
   const audio = document.getElementById("gameAudio");
   const source = document.getElementById("audioSource");
-  audio.volume = 0.1;
+  audio.volume = 0.3;
   let game;
 
   function startGame() {
     game = null;
     game = new Game();
     game.start();
-    source.src = "./audio/level-1.wav";
+    source.src = "./audio/level-3.wav";
     audio.load();
   }
 
