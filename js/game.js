@@ -19,7 +19,7 @@ class Game {
     this.score = 0;
     this.highscore = localStorage.getItem("highscore")
       ? localStorage.getItem("highscore")
-      : 0;
+      : this.score;
     this.gameOver = false;
     this.gameInterval = null;
     this.audio = document.getElementById("gameAudio");
@@ -41,9 +41,21 @@ class Game {
     this.gameInterval = setInterval(() => {
       if (this.timer.timeRemaining <= 0) {
         this.gameIsOver();
-        clearInterval(this.gameInterval);
+      } else if (this.timer.timeRemaining <= 100) {
+        this.toggleTilt(true);
+      } else {
+        this.toggleTilt(false);
       }
     }, 100);
+  }
+
+  toggleTilt(bool) {
+    const timeContainer = document.getElementById("timer-container");
+    if (bool) {
+      timeContainer.classList.add("tilt-move");
+    } else {
+      timeContainer.classList.remove("tilt-move");
+    }
   }
 
   displayScore(num) {
@@ -58,7 +70,9 @@ class Game {
   }
 
   gameIsOver() {
+    clearInterval(this.gameInterval);
     clearInterval(this.timer.interval);
+    this.toggleTilt(false);
     this.audio.pause();
     this.gameScreen.style.display = "none";
     this.gameScreen.innerHTML = `
@@ -80,7 +94,6 @@ class Game {
     this.gameOver = true;
     if (this.score > this.highscore) {
       localStorage.setItem("highscore", this.score);
-      alert("New Highscore!");
     }
     const highscore = document.getElementById("highscore");
     highscore.innerHTML = this.highscore;

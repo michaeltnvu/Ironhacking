@@ -108,6 +108,10 @@ body {
   z-index: 2;
 }
 
+.tilt-move {
+  animation: tilt-n-move 0.15s infinite;
+}
+
 #timer-bar {
   height: 100%;
   background-color: red;
@@ -207,6 +211,24 @@ body {
   top: 85%;
   left: 50%;
   transform: translate(-50%, -50%);
+}
+
+@keyframes tilt-n-move {
+  0% {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+  25% {
+    transform: translate(-55%, -55%) rotate(5deg);
+  }
+  50% {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+  75% {
+    transform: translate(-55%, -55%) rotate(-5deg);
+  }
+  100% {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
 }
 
 @keyframes attack_left {
