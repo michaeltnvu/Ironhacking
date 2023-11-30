@@ -10,7 +10,7 @@ window.onload = function () {
     game = null;
     game = new Game();
     game.start();
-    source.src = "./audio/level-3.wav";
+    source.src = "./audio/level-1.wav";
     audio.load();
   }
 
